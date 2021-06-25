@@ -1,6 +1,6 @@
 # from django.shortcuts import render
 import tqdm
-from nl_prcs.nl_prcs.models import Reader, FileDTO, Printer
+from monaco.nl_prcs.models import Reader, FileDTO, Printer
 from icecream import ic
 from matplotlib import font_manager, rc
 import matplotlib.pyplot as plt
@@ -54,7 +54,7 @@ class NLService(Reader):
         wc = WordCloud(background_color='white', max_words=2000, mask=alice_mask,
                        stopwords=stopwords)
         wc = wc.generate(text)
-        # ic(wc.words_)
+        ic(wc.words_)
         plt.figure(figsize=(12, 12))
         plt.imshow(wc, interpolation='bilinear')
         plt.axis('off')
@@ -68,6 +68,7 @@ class NLService(Reader):
         f.context = './data/'
         path = "c:/Windows/Fonts/malgun.ttf"
 
+        ic(platform.system())
         if platform.system() == 'Darwin':
             rc('font', family='AppleGothic')
         elif platform.system() == 'Windows':
@@ -119,12 +120,19 @@ class NLService(Reader):
         ko.plot(50)
         plt.show()
 
+        stopwords = set(STOPWORDS)
+        stopwords.add("가")
+        stopwords.add("?")
+        stopwords.add("로")
+        stopwords.add("이")
+        stopwords = {'가', '이', '?'}
+
         data = ko.vocab().most_common(300)
         # for win : font_path='c:/Windows/Fonts/malgun.ttf'
         # /Library/Fonts/AppleGothic.ttf
         wordcloud = WordCloud(font_path=path,
                               relative_scaling=0.2,
-                              # stopwords=STOPWORDS,
+                              stopwords=stopwords,
                               background_color='white',
                               ).generate_from_frequencies(dict(data))
         plt.figure(figsize=(16, 8))
@@ -142,6 +150,7 @@ class NLService(Reader):
         wordcloud = WordCloud(font_path=path,
                               relative_scaling=0.1, mask=mask,
                               background_color='white',
+                              stopwords=stopwords,
                               min_font_size=1,
                               max_font_size=100).generate_from_frequencies(dict(data))
 

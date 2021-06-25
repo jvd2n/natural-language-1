@@ -1,0 +1,8 @@
+table, th, tr, td {
+  border: 0px solid black;
+  margin: 0 40px;  
+}
+
+.tab_layer {
+  width: 300px;   
+}

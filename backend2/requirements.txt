@@ -1,0 +1,15 @@
+django==3.2.4
+djangorestframework==3.12.4
+pandas==1.2.4
+googlemaps==4.4.5
+selenium==3.141.0
+icecream==2.1.1
+tqdm==4.59.0
+matplotlib==3.3.4
+nltk==3.6.1
+wordcloud==1.8.1
+konlpy==0.5.2
+beautifulsoup4==4.9.3
+numpy==1.20.1
+pillow==8.2.0
+setuptools==52.0.0

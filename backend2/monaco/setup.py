@@ -30,9 +30,9 @@ setup(
     scripts=['manage.py'],
     entry_points={
         'console_scripts': [
-            'publish = nl_prcs.common.script:main',
-            'scan = nl_prcs.crime.script:main',
-            'update = nl_prcs.gas_station.script:main',
+            'publish = monaco.common.script:main',
+            'scan = monaco.crime.script:main',
+            'update = monaco.gas_station.script:main',
             ],
         },
     )

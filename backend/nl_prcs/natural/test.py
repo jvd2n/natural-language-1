@@ -6,7 +6,7 @@ from PIL import Image
 from icecream import ic
 import matplotlib.pyplot as plt
 import platform
-from nl_prcs.nl_prcs.models import FileDTO, Reader, Printer, Scraper
+from nl_prcs.natural.models import FileDTO, Reader, Printer, Scraper
 
 # kkma = Kkma()
 # ic(kkma.pos('한국어 분석을 시작합니다 재미있어요~~'))
