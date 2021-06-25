@@ -3,9 +3,9 @@ from django.shortcuts import render
 # Create your views here.
 import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "project.settings")
-from admin.common.models import FileDTO
+from nl_prcs.common.models import FileDTO
 # from rest_framework.common.abstract import ReaderBase
-from admin.common.models import Printer, Reader
+from nl_prcs.common.models import Printer, Reader
 import pandas as pd
 import numpy as np
 from sklearn import preprocessing

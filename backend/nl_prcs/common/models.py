@@ -7,7 +7,7 @@ import json
 import googlemaps
 from selenium import webdriver
 from icecream import ic
-from admin.common.abstract import PrinterBase, ReaderBase, ScraperBase
+from nl_prcs.common.abstract import PrinterBase, ReaderBase, ScraperBase
 
 
 @dataclass
