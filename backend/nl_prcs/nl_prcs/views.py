@@ -1,23 +1,18 @@
+# from django.shortcuts import render
 import tqdm
-from django.shortcuts import render
 from nl_prcs.nl_prcs.models import Reader, FileDTO, Printer
 from icecream import ic
+from matplotlib import font_manager, rc
 import matplotlib.pyplot as plt
-import platform
 from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 import nltk
 from konlpy.tag import Okt
-from tqdm import tqdm_notebook
-import pandas as pd
-import numpy as np
 import platform
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import urllib
 import urllib.parse
 import time
-from tqdm import tqdm_notebook
-
 
 
 class NLService(Reader):
@@ -33,8 +28,8 @@ class NLService(Reader):
         p = self.p
         f.context = './data/'
         f.fname = '09. alice.txt'
-        f.img = '09. alice_mask.png'
         text = r.txt(f)
+        f.fname = '09. alice_mask.png'
         alice_mask = r.img(f)
         # ic(text)
         # ic(type(alice_mask))
@@ -43,7 +38,6 @@ class NLService(Reader):
         stopwords.add("said")
 
         path = "c:/Windows/Fonts/malgun.ttf"
-        from matplotlib import font_manager, rc
         if platform.system() == 'Darwin':
             rc('font', family='AppleGothic')
         elif platform.system() == 'Windows':
@@ -72,9 +66,8 @@ class NLService(Reader):
         r = self.r
         p = self.p
         f.context = './data/'
-
         path = "c:/Windows/Fonts/malgun.ttf"
-        from matplotlib import font_manager, rc
+
         if platform.system() == 'Darwin':
             rc('font', family='AppleGothic')
         elif platform.system() == 'Windows':
@@ -97,22 +90,16 @@ class NLService(Reader):
         tmp_list = []
         for line in tmp:
             tmp_list.append(line.text)
-
         # ic(tmp_list)
 
         present_candi_text = []
         for n in tqdm.tqdm(range(1, 1000, 10)):
             response = urlopen(html.format(num=n, key_word=urllib.parse.quote('여자 친구 선물')))
-
             soup = BeautifulSoup(response, "html.parser")
-
             tmp = soup.find_all('strong')
-
             for line in tmp:
                 present_candi_text.append(line.text)
-
             time.sleep(0.5)
-
         # ic(present_candi_text)
 
         t = Okt()
@@ -126,8 +113,6 @@ class NLService(Reader):
         ko = nltk.Text(tokens_ko, name='여자 친구 선물')
         ic(len(ko.tokens))
         ic(len(set(ko.tokens)))
-
-        ko = nltk.Text(tokens_ko, name='여자 친구 선물')
         ko.vocab().most_common(100)
 
         plt.figure(figsize=(15, 6))
@@ -135,10 +120,9 @@ class NLService(Reader):
         plt.show()
 
         data = ko.vocab().most_common(300)
-
         # for win : font_path='c:/Windows/Fonts/malgun.ttf'
         # /Library/Fonts/AppleGothic.ttf
-        wordcloud = WordCloud(font_path='c:/Windows/Fonts/malgun.ttf',
+        wordcloud = WordCloud(font_path=path,
                               relative_scaling=0.2,
                               # stopwords=STOPWORDS,
                               background_color='white',
@@ -148,25 +132,20 @@ class NLService(Reader):
         plt.axis("off")
         plt.show()
 
-
-        f.img = '09. heart.jpg'
+        f.fname = '09. heart.jpg'
         mask = r.img(f)
-
-
         image_colors = ImageColorGenerator(mask)
-
         data = ko.vocab().most_common(200)
 
         # for win : font_path='c:/Windows/Fonts/malgun.ttf'
         # /Library/Fonts/AppleGothic.ttf
-        wordcloud = WordCloud(font_path='c:/Windows/Fonts/malgun.ttf',
+        wordcloud = WordCloud(font_path=path,
                               relative_scaling=0.1, mask=mask,
                               background_color='white',
                               min_font_size=1,
                               max_font_size=100).generate_from_frequencies(dict(data))
 
         default_colors = wordcloud.to_array()
-
         plt.figure(figsize=(12, 12))
         plt.imshow(wordcloud.recolor(color_func=image_colors), interpolation='bilinear')
         plt.axis('off')

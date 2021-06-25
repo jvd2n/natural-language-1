@@ -26,12 +26,12 @@ class Reader(Reader):
     #         return file.context + file.img
     #     else:
     #         return file.context + file.fname
-    def new_img(self, file):
-        return file.context + file.img
+    # def new_img(self, file):
+    #     return file.context + file.img
 
     def txt(self, file) -> str:
         return open(f'{self.new_file(file)}').read()
 
     def img(self, image):
-        return np.array(Image.open(f'{self.new_img(image)}'))
+        return np.array(Image.open(f'{self.new_file(image)}'))
 
