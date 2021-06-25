@@ -8,7 +8,6 @@ from PIL import Image
 @dataclass
 class FileDTO(FileDTO):
     img: str
-    ls: list
 
     @property
     def img(self) -> str: return self._img
