@@ -37,7 +37,9 @@ class NLService(Reader):
         stopwords = set(STOPWORDS)
         stopwords.add("said")
 
-        path = "c:/Windows/Fonts/malgun.ttf"
+        # path = "c:/Windows/Fonts/malgun.ttf"
+        path = '/Library/Fonts/AppleGothic.ttf'
+
         if platform.system() == 'Darwin':
             rc('font', family='AppleGothic')
         elif platform.system() == 'Windows':
@@ -66,7 +68,8 @@ class NLService(Reader):
         r = self.r
         p = self.p
         f.context = './data/'
-        path = "c:/Windows/Fonts/malgun.ttf"
+        # path = "c:/Windows/Fonts/malgun.ttf"
+        path = '/Library/Fonts/AppleGothic.ttf'
 
         ic(platform.system())
         if platform.system() == 'Darwin':
@@ -94,7 +97,7 @@ class NLService(Reader):
         # ic(tmp_list)
 
         present_candi_text = []
-        for n in tqdm.tqdm(range(1, 1000, 10)):
+        for n in tqdm.tqdm(range(1, 200, 10)):
             response = urlopen(html.format(num=n, key_word=urllib.parse.quote('여자 친구 선물')))
             soup = BeautifulSoup(response, "html.parser")
             tmp = soup.find_all('strong')
@@ -146,7 +149,7 @@ class NLService(Reader):
         data = ko.vocab().most_common(200)
 
         # for win : font_path='c:/Windows/Fonts/malgun.ttf'
-        # /Library/Fonts/AppleGothic.ttf
+        # for mac : path='/Library/Fonts/AppleGothic.ttf'
         wordcloud = WordCloud(font_path=path,
                               relative_scaling=0.1, mask=mask,
                               background_color='white',
@@ -163,5 +166,5 @@ class NLService(Reader):
 
 if __name__ == '__main__':
     nls = NLService()
-    nls.show_alice()
+    # nls.show_alice()
     nls.show_present()

@@ -72,7 +72,8 @@ class Reader(ReaderBase):
 
 class Scraper(ScraperBase):
     def driver(self) -> object:
-        return webdriver.Chrome('C:/Program Files/Google/Chrome/chromedriver')
+        # return webdriver.Chrome('C:/Program Files/Google/Chrome/chromedriver')
+        return webdriver.Chrome('/Users/muten/Desktop/dev/chromedriver')
 
     def auto_login(self):
         pass
