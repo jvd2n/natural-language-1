@@ -1,4 +1,4 @@
-ol {
+/* ol {
   padding:1%;
 }
 
@@ -6,4 +6,9 @@ ol li {
   display: inline; 
   margin-left: 15px;
   padding:0%;
+} */
+
+.Nav a, .Nav a:link, .Nav a:visited {
+  color: white;
+  text-decoration: none;
 }

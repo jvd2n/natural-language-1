@@ -1,0 +1,4 @@
+.Home a, .Home a:link, .Home a:visited {
+  color: white;
+  text-decoration: none;
+}
