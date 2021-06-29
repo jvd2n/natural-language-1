@@ -34,18 +34,18 @@ const Signup = () => {
     alert(`전송클릭: ${JSON.stringify({...userInfo})}`)
     const signupRequest = {...userInfo}
     userSignup(signupRequest)
-    .then(res => {
-      alert(`회원가입 성공 : ${res.data.result}`)
+    .then((res) => {
+      alert(`${res.data.username}님, 환영합니다.`)
       // history.push('login')
     })
     .catch(err => {
       alert(`회원가입 실패 : ${err}`)
     })
 
-    const loginRequest = {...userInfo}
-    userLogin(loginRequest)
-    .then()
-    .catch()
+    // const loginRequest = {...userInfo}
+    // userLogin(loginRequest)
+    // .then()
+    // .catch()
   }
 
   const handleClick = e => {
@@ -64,7 +64,7 @@ const Signup = () => {
 
   return(<>
   <div className="Signup">
-    <form onSubmit={handleSubmit} method="get" style={{border:"1px solid #ccc"}} name="SignupForm">
+    <form onSubmit={handleSubmit} method="post" style={{border:"1px solid #ccc"}} name="SignupForm">
       <div class="container">
         <h1>Sign Up</h1>
         <p>Please fill in this form to create an account.</p>
