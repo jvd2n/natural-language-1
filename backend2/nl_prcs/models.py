@@ -1,6 +1,5 @@
-from django.db import models
 from dataclasses import dataclass
-from monaco.common.models import FileDTO, Printer, Reader, Scraper
+from common.models import FileDTO, Printer, Reader
 import numpy as np
 from PIL import Image
 

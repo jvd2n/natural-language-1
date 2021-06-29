@@ -49,3 +49,15 @@ export const ArticleMenu = () => (
     </ol>
   </nav>
 );
+
+export const PostMenu = () => (
+  <nav>
+    <ol>
+      <li><Link to='/post-list'>Blog List</Link></li>
+      <li><Link to='/post-register'>Blog Write</Link></li>
+      <li><Link to='/post-retrieve'>Blog Read</Link></li>
+      <li><Link to='/post-update'>Blog Update</Link></li>
+      <li><Link to='/post-delete'>Blog Delete</Link></li>
+    </ol>
+  </nav>
+);

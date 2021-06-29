@@ -56,7 +56,7 @@
 }
 
 @media screen and (max-width: 300px) {
-  .cancelbtn, .signupbtn {
+  .signupbtn, .cancelbtn {
     width: 100%;
   }
 }

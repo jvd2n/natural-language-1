@@ -1,6 +1,6 @@
 # from django.shortcuts import render
 import tqdm
-from monaco.nl_prcs.models import Reader, FileDTO, Printer
+from nl_prcs.models import Reader, FileDTO, Printer
 from icecream import ic
 from matplotlib import font_manager, rc
 import matplotlib.pyplot as plt

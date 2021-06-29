@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class BoardConfig(AppConfig):
+class MemberConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'monaco.board'
+    name = 'member'

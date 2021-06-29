@@ -1,5 +1,6 @@
 import React from 'react';
-import { Redirect, Route, BrowserRouter as Router, Link } from "react-router-dom";
+import { Redirect, Route, BrowserRouter as Router } from "react-router-dom";
+// import { Link } from "react-router-dom"
 import { Login, Signup, UserDetail, UserList, UserEdit } from 'user/index'
 import { Nav } from 'common'
 import { Home, User, Item, Blog, Stock } from 'templates'

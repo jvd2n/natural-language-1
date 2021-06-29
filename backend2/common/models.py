@@ -1,5 +1,3 @@
-from django.db import models
-
 # Create your models here.
 from dataclasses import dataclass
 import pandas as pd
@@ -7,7 +5,7 @@ import json
 import googlemaps
 from selenium import webdriver
 from icecream import ic
-from nl_prcs.common.abstract import PrinterBase, ReaderBase, ScraperBase
+from common.abstract import PrinterBase, ReaderBase, ScraperBase
 
 
 @dataclass
