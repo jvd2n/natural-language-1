@@ -53,11 +53,11 @@ export const ArticleMenu = () => (
 export const PostMenu = () => (
   <nav>
     <ol>
-      <li><Link to='/post-list'>Blog List</Link></li>
-      <li><Link to='/post-register'>Blog Write</Link></li>
-      <li><Link to='/post-retrieve'>Blog Read</Link></li>
-      <li><Link to='/post-update'>Blog Update</Link></li>
-      <li><Link to='/post-delete'>Blog Delete</Link></li>
+      <li><Link to='/post-list'>Board List</Link></li>
+      <li><Link to='/post-register'>Board Write</Link></li>
+      <li><Link to='/post-retrieve'>Board Read</Link></li>
+      <li><Link to='/post-update'>Board Update</Link></li>
+      <li><Link to='/post-delete'>Board Delete</Link></li>
     </ol>
   </nav>
 );

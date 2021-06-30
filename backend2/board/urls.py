@@ -1,6 +1,7 @@
-from django.urls import path
-from . import views
+from django.urls import path, include
+from django.conf.urls import url
+from .views import Posts as posts
 
 urlpatterns = [
-    path('', views.index)
+    url('register/', posts.as_view())
 ]

@@ -31,9 +31,10 @@ const Signup = () => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    alert(`전송클릭: ${JSON.stringify({...userInfo})}`)
-    const signupRequest = {...userInfo}
-    userSignup(signupRequest)
+    // alert(`전송클릭: ${JSON.stringify({...userInfo})}`)
+    // const signupRequest = {...userInfo}
+    // userSignup(signupRequest)
+    userSignup({...userInfo})
     .then((res) => {
       alert(`${res.data.username}님, 환영합니다.`)
       // history.push('login')
@@ -64,7 +65,7 @@ const Signup = () => {
 
   return(<>
   <div className="Signup">
-    <form onSubmit={handleSubmit} method="post" style={{border:"1px solid #ccc"}} name="SignupForm">
+    <form onSubmit={handleSubmit} method="POST" style={{border:"1px solid #ccc"}} name="SignupForm">
       <div class="container">
         <h1>Sign Up</h1>
         <p>Please fill in this form to create an account.</p>

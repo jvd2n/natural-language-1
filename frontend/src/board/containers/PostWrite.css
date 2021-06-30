@@ -1,7 +1,7 @@
-.Signup body {font-family: Arial, Helvetica, sans-serif;}
+.PostWrite body {font-family: Arial, Helvetica, sans-serif;}
   * {box-sizing: border-box}
 
-.Signup input[type=text], .Signup input[type=password] {
+.PostWrite input[type=text], .PostWrite input[type=password], .PostWrite textarea {
   width: 100%;
   padding: 15px;
   margin: 5px 0 22px 0;
@@ -10,18 +10,18 @@
   background: #f1f1f1;
 }
 
-.Signup input[type=text]:focus, .Signup input[type=password]:focus {
+.PostWrite input[type=text]:focus, input[type=password]:focus {
   background-color: #ddd;
   outline: none;
 }
 
-.Signup hr {
+.PostWrite hr {
   border: 1px solid #f1f1f1;
   margin-bottom: 25px;
 }
 
-.Signup button {
-  background-color: #04AA6D;
+.PostWrite button {
+  background-color: #fc9309;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -31,32 +31,32 @@
   opacity: 0.9;
 }
 
-.Signup button:hover {
+.PostWrite button:hover {
   opacity:1;
 }
 
-.Signup .cancelbtn {
+.PostWrite .cancelbtn {
   padding: 14px 20px;
-  background-color: #f44336;
+  background-color: #fa2323;
 }
 
-.Signup .cancelbtn, .Signup .signupbtn {
+.PostWrite .cancelbtn, .PostWrite .signupbtn {
   float: left;
   width: 50%;
 }
 
-.Signup .container {
+.PostWrite .container {
   padding: 16px;
 }
 
-.Signup .clearfix::after {
+.PostWrite .clearfix::after {
   content: "";
   clear: both;
   display: table;
 }
 
 @media screen and (max-width: 300px) {
-  .Signup .signupbtn, .Signup .cancelbtn {
+  .PostWrite .signupbtn, .PostWrite .cancelbtn {
     width: 100%;
   }
 }

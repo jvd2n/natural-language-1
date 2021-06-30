@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Post(models.Model):
-    # sequence = models.AutoField(primary_key=True) # 생략해야 자동 생성됨
+    # id = models.AutoField(primary_key=True) # 생략하면 자동 생성됨
     title = models.CharField(max_length=30)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
