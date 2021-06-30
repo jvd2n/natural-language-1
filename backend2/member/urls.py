@@ -13,7 +13,8 @@ urlpatterns = [
     # path('signup/', views.Auth.as_view()),
     # path('signup/', views.member_list),
     url('signup/', members.as_view()),
-    path('login/<str:pk>/', login.as_view())
+    # path('login/<str:pk>/', login.as_view()),
+    path('login/', login.as_view())
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

@@ -42,7 +42,7 @@ const Login = () => {
   return(<>
     <h2>Login Form</h2>
     <div className="login">
-      <form  onSubmit={handleSubmit} method="GET" name="LoginForm">
+      <form  onSubmit={handleSubmit} method="POST" name="LoginForm">
         <div className="imgcontainer">
           {/* <img src="https://www.w3schools.com/howto/img_avatar2.png" style={{width:'300px'}} alt="Avatar" className="avatar"/> */}
         </div>

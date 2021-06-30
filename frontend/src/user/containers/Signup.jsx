@@ -36,7 +36,8 @@ const Signup = () => {
     // userSignup(signupRequest)
     userSignup({...userInfo})
     .then((res) => {
-      alert(`${res.data.username}님, 환영합니다.`)
+      console.log(res)
+      alert(`${res.data.result}`)
       // history.push('login')
     })
     .catch(err => {

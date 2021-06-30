@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.urls import path
 # from . import views
 from django.http import HttpResponse, JsonResponse, Http404
+from django.contrib.auth import authenticate
+from django.contrib.auth.models import User
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import viewsets, permissions, generics, status
@@ -9,9 +11,10 @@ from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
 from rest_framework.views import APIView, exception_handler
 from rest_framework.decorators import api_view, permission_classes
+from rest_framework.authtoken.models import Token
 from rest_framework.permissions import AllowAny
 from .models import MemberVO
-from .serializers import MemberVOSerializer
+from .serializers import MemberVOSerializer, LoginSerializer, UserSerializer
 from icecream import ic
 from knox.models import AuthToken
 
@@ -33,14 +36,18 @@ from knox.models import AuthToken
 #         return Response({'result': 'WELCOME'})
 
 
-class Members(APIView):
-    def post(self, request):
+class Members(generics.GenericAPIView):
+    def post(self, request, *args, **kwargs):
         data = request.data['body']
         ic(data)
         serializer = MemberVOSerializer(data=data)
+        ic(serializer)
         if serializer.is_valid():
-            serializer.save()
-            return Response({'result': f'Welcome, {serializer.data.get("name")}'}, status=201)
+            user = serializer.save()
+            return Response(
+                {
+                    'result': f'Welcome, {serializer.data.get("username")}'
+                }, status=201)
         ic(serializer.errors)
         return Response(serializer.errors, status=400)
 
@@ -50,17 +57,35 @@ class Members(APIView):
         return JsonResponse(serializer.data, safe=False)
 
 
-class MemberLogin(APIView):
-    def get_object(self, pk):
-        try:
-            return MemberVO.objects.get(pk=pk)
-        except MemberVO.DoesNotExist:
-            raise Http404
+class MemberLogin(generics.GenericAPIView):
+    # def get_object(self, pk):
+    #     try:
+    #         return MemberVO.objects.get(pk=pk)
+    #     except MemberVO.DoesNotExist:
+    #         raise Http404
 
-    def get(self, request, pk):
-        login = self.get_object(pk)
-        serializer = MemberVOSerializer(login)
-        return Response(serializer.data)
+    # def get(self, request, pk):
+    #     login = self.get_object(pk)
+    #     serializer = MemberVOSerializer(login)
+    #     return Response(serializer.data)
+
+    def post(self, request):
+        ic('****POST*****')
+        data = request.data['logData']
+        ic(data)
+        # serializer = LoginSerializer(data=data)
+        serializer = self.get_serializer(data=request.data['logData'])
+        ic(serializer)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data
+        return Response(
+            {
+                'member': UserSerializer(
+                    user, context=self.get_serializer_context()
+                ).data,
+                'token': AuthToken.objects.create(user),
+            }
+        )
 
 
 # @csrf_exempt

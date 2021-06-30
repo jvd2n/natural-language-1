@@ -5,6 +5,46 @@ from django.contrib.auth import get_user_model
 from .models import MemberVO as member
 
 
+class MemberVOSerializer(serializers.ModelSerializer):
+    # username = serializers.PrimaryKeyRelatedField(queryset=Member.objects.all())
+    username = serializers.CharField(max_length=10)
+    password = serializers.CharField(max_length=10)
+    name = serializers.CharField(max_length=12)
+    email = serializers.EmailField()
+
+    class Meta:
+        model = member
+        fields = '__all__'
+        fields = ("username", "password", "name", "email")
+        # extra_kwargs = {"password": {"write_only": True}}
+
+    def create(self, validated_data):
+        return member.objects.create(**validated_data)  # ** -> dictionary
+
+    def update(self, instance, validated_data):
+        instance.username = validated_data.get('username', instance.username)
+        instance.password = validated_data.get('password', instance.password)
+        instance.name = validated_data.get('name', instance.name)
+        instance.email = validated_data.get('email', instance.email)
+        instance.save()
+        return instance
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = member
+        fields = ['username']
+
+class LoginSerializer(serializers.BaseSerializer):
+    username = serializers.CharField()
+    password = serializers.CharField()
+
+    def validate(self, data):
+        user = authenticate(**data)
+        if user and user.is_active:
+            return user
+        raise serializers.ValidationError("Unable to log")
+
 # class CreateUserSerializer(serializers.ModelSerializer):
 #     class Meta:
 #         model = User
@@ -72,25 +112,4 @@ from .models import MemberVO as member
 #         # fields = '__all__'
 
 
-class MemberVOSerializer(serializers.Serializer):
-    # username = serializers.PrimaryKeyRelatedField(queryset=Member.objects.all())
-    username = serializers.CharField(max_length=10)
-    password = serializers.CharField(max_length=10)
-    name = serializers.CharField(max_length=12)
-    email = serializers.EmailField()
-
-    class Meta:
-        model = member
-        fields = '__all__'
-
-    def create(self, validated_data):
-        return member.objects.create(**validated_data)  # ** -> dictionary
-
-    def update(self, instance, validated_data):
-        instance.username = validated_data.get('username', instance.username)
-        instance.password = validated_data.get('password', instance.password)
-        instance.name = validated_data.get('name', instance.name)
-        instance.email = validated_data.get('email', instance.email)
-        instance.save()
-        return instance
 
