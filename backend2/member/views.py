@@ -87,11 +87,12 @@ def member_list(request):
         serializer = MemberSerializer(member, many=True)
         return JsonResponse(serializer.data, safe=False)
     elif request.method == 'POST':
-        ic('****************')
+        ic('******POST*******')
         # ic(request.META)
         data = JSONParser().parse(request)
         serializer = MemberSerializer(data=data)
         if serializer.is_valid():
+            ic('*****save*****')
             serializer.save()
             return JsonResponse(serializer.data, status=201)
         return JsonResponse(serializer.errors, status=400)
