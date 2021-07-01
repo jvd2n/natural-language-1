@@ -33,7 +33,8 @@ const PostRegister = () => {
     // userSignup(signupRequest)
     postRegister({...postInfo})
     .then((res) => {
-      alert(`${res.data.title}이 업로드 되었습니다.`)
+      console.log(res.data);
+      alert(`${res.data.result}이 업로드 되었습니다.`);
       // history.push('login')
     })
     .catch(err => {

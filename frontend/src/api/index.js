@@ -19,7 +19,7 @@ export const postDetail = body => axios.post(`${SERVER}api/post/detail`,{headers
 export const postDelete = body => axios.post(`${SERVER}api/post/delete`,{headers, body})
 export const postList = body => axios.post(`${SERVER}api/post/list`,{headers, body})
 export const postModify = body => axios.post(`${SERVER}api/post/modify`,{headers, body})
-export const postRegister = body => axios.post(`${SERVER}api/post/register`,{headers, body})
+export const postRegister = body => axios.post(`${SERVER}api/post/register/`,{headers, body})
 export const postRetrieve = body => axios.post(`${SERVER}api/post/retrieve`,{headers, body})
 /* Common */
 /* 공통은 네이밍 컨벤션에서 벗어남 */
@@ -36,6 +36,7 @@ export const itemRetrieve = body => axios.post(`${SERVER}item/retrieve`,{headers
 export const memberDetail = body => axios.post(`${SERVER}api/member/detail`,{headers, body})
 export const memberDelete = body => axios.post(`${SERVER}api/member/delete`,{headers, body})
 export const memberList = () => axios.get(`${SERVER}api/member/list/`)
+export const memberList2 = () => axios.get(`${SERVER}api/member/list/`)
 export const memberModify = body => axios.post(`${SERVER}api/member/modify`,{headers, body})
 export const memberRegister = body => axios.post(`${SERVER}adm/member/register/`,{headers, body})
 export const memberRetrieve = body => axios.post(`${SERVER}api/member/retrieve`,{headers, body})

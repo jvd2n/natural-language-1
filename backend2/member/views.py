@@ -56,14 +56,17 @@ def member(request):
             ic('*****password Authentication*****')
             return JsonResponse(
                 {
-                    'result': 'Welcome!',
+                    'result': 'Welcome',
                     'username': data['username'],
                 }, status=status.HTTP_200_OK)
-        return JsonResponse('error!!')
+        return JsonResponse('error')
     elif request.method == 'DELETE':
         serializer = MemberVOSerializer()
         return JsonResponse(serializer.data, safe=False)
 
 
 def get_object(pk):
-    return MemberVO.objects.get(pk=pk)
+    try:
+        return MemberVO.objects.get(pk=pk)
+    except MemberVO.DoesNotExist:
+        raise Http404

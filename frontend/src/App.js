@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect, Route, BrowserRouter as Router } from "react-router-dom";
 import { Nav } from 'common'
-import { MemberDelete, MemberDetail, MemberList, MemberLogin, MemberModify, MemberRegister, MemberRetrieve } from 'member'
+import { MemberDelete, MemberDetail, MemberList, MemberList2, MemberLogin, MemberModify, MemberRegister, MemberRetrieve } from 'member'
 import { PostDelete, PostDetail, PostList, PostModify, PostRegister, PostRetrieve } from 'board'
 import { ItemDelete, ItemDetail, ItemList, ItemModify, ItemRegister, ItemRetrieve } from 'item'
 import { Home, Member, Item, Board, Stock } from 'templates'
@@ -31,7 +31,7 @@ const App = () => {
       <Route exact path='/member' component={Member}/>
       <Route exact path='/member-delete' component={MemberDelete}/>
       <Route exact path='/member-detail' component={MemberDetail}/>
-      <Route exact path='/member-list' component={MemberList}/>
+      <Route exact path='/member-list' component={MemberList2}/>
       <Route exact path='/member-modify' component={MemberModify}/>
       <Route exact path='/member-register' component={MemberRegister}/>
       <Route exact path='/member-retrieve' component={MemberRetrieve}/>
