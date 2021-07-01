@@ -21,6 +21,7 @@ const useStyles1 = makeStyles((theme) => ({
   root: {
     flexShrink: 0,
     marginLeft: theme.spacing(5),
+    // marginRight: theme.spacing(2.5),
   },
   table: {
     // minWidth: 600,
