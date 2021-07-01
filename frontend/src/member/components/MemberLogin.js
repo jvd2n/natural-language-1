@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import './Login.css';
+import '../styles/MemberLogin.css';
+
 import { Button } from '@material-ui/core';
 // import { InputSharp, SettingsInputSvideo } from '@material-ui/icons';
-import { userLogin } from 'api/index';
+import { memberLogin } from 'api/index';
 import { useHistory } from 'react-router'
 
-const Login = () => {
+const MemberLogin = () => {
   const history = useHistory()
 
   const [loginInfo, setLoginInfo] = useState({
@@ -27,8 +28,8 @@ const Login = () => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    alert(`전송클릭: ${JSON.stringify({...loginInfo})}`)
-    userLogin({...loginInfo})
+    // alert(`전송클릭: ${JSON.stringify({...loginInfo})}`)
+    memberLogin({...loginInfo})
     .then((res) => {
       console.log(res)
       alert(`${res.data.username}님, 로그인 되었습니다.`)
@@ -69,4 +70,4 @@ const Login = () => {
   </>)
 }
 
-export default Login
+export default MemberLogin;

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
+import '../styles/MemberRegister.css';
 import { Button } from '@material-ui/core';
-import './Signup.css';
 // import { InputSharp, SettingsInputSvideo } from '@material-ui/icons';
-import { userSignup, userLogin } from 'api/index';
+import { memberRegister } from 'api/index';
 import { useHistory } from 'react-router'
 
-const Signup = () => {
+const MemberRegister = () => {
   const history = useHistory()
 
   const [userInfo, setUserInfo] = useState({
@@ -34,10 +34,10 @@ const Signup = () => {
     // alert(`전송클릭: ${JSON.stringify({...userInfo})}`)
     // const signupRequest = {...userInfo}
     // userSignup(signupRequest)
-    userSignup({...userInfo})
+    memberRegister({...userInfo})
     .then((res) => {
-      console.log(res)
-      alert(`${res.data.result}`)
+      console.log(res.data.username)
+      alert(`${res.data.username}님, 환영합니다.`)
       // history.push('login')
     })
     .catch(err => {
@@ -103,4 +103,4 @@ const Signup = () => {
   </>)
 }
 
-export default Signup
+export default MemberRegister;

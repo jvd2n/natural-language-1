@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
+import '../styles/PostWrite.css';
 import { Button } from '@material-ui/core';
-import './PostWrite.css';
 // import { InputSharp, SettingsInputSvideo } from '@material-ui/icons';
 import { postRegister } from 'api/index';
 import { useHistory } from 'react-router'
 
-const PostWrite = () => {
+const PostRegister = () => {
 
   const [postInfo, setPostInfo] = useState({
     title: '',
@@ -45,7 +45,7 @@ const PostWrite = () => {
   <div className="PostWrite">
     <form onSubmit={handleSubmit} method="POST" style={{border:"1px solid #ccc"}} name="PostWriteForm">
       <div class="container">
-        <h1>Post Write</h1>
+        <h1>Post Register</h1>
         <p>Please fill in this form to create a post.</p>
         <hr/>
 
@@ -66,4 +66,4 @@ const PostWrite = () => {
   </>)
 }
 
-export default PostWrite
+export default PostRegister;

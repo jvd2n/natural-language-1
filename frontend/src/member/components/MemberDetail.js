@@ -1,6 +1,6 @@
 import React from 'react';
 
-const UserDetail = () => {
+const MemberDetail = () => {
   return(<>
   <h1>첫번째 크기 헤드라인</h1>
   <h2>두번째 크기 헤드라인</h2>
@@ -14,4 +14,4 @@ const UserDetail = () => {
   </>)
 }
 
-export default UserDetail
+export default MemberDetail;

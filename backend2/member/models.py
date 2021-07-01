@@ -35,4 +35,4 @@ class MemberVO(models.Model):
         # ordering = ['created']
 
     def __str__(self):
-        return f'[{self.pk}]{self.username}'
+        return f'[{self.pk}]{self.username}, {self.password}, {self.name}'
