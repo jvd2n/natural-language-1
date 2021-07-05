@@ -38,7 +38,7 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-const MemberList = () => {
+const MemberListComponent = () => {
   const [members, setMembers] = useState([]);
 
   const classes = useStyles();
@@ -95,7 +95,7 @@ const MemberList = () => {
     </>);
 }
 
-export default MemberList;
+export default MemberListComponent;
 
 // {rows.map((row) => (
 //   <TableRow key={row.name}>

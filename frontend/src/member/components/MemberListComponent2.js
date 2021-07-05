@@ -16,15 +16,16 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
 import { memberList2 } from 'api';
+import { Link } from 'react-router-dom';
 
 const useStyles1 = makeStyles((theme) => ({
   root: {
     flexShrink: 0,
-    marginLeft: theme.spacing(5),
+    marginLeft: theme.spacing(3),
   },
   table: {
-    // minWidth: 600,
-    maxWidth: '97%',
+    minWidth: 600,
+    maxWidth: '94%',
   },
 }));
 
@@ -115,7 +116,7 @@ const useStyles2 = makeStyles({
   },
 });
 
-const MemberList2 = () => {
+const MemberListComponent2 = () => {
   const [members, setMembers] = useState([]);
   useEffect(() => {
     memberList2()
@@ -129,8 +130,8 @@ const MemberList2 = () => {
   }, [])
 
   const classes = useStyles1();
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, members.length - page * rowsPerPage);
 
@@ -142,6 +143,10 @@ const MemberList2 = () => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+
+  const handleClick = member => {
+    localStorage.setItem("selectedMember", member)
+  }
 
   return (
     <TableContainer component={Paper}>
@@ -158,26 +163,28 @@ const MemberList2 = () => {
           {(rowsPerPage > 0
             ? members.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : members
-          ).map((member) => (
-            <TableRow key={member.username}>
-              <TableCell component="th" scope="row">
-                {member.username}
-              </TableCell>
-              <TableCell style={{ width: '24%' }} align="left">
-                {member.password}
-              </TableCell>
-              <TableCell style={{ width: '24%' }} align="left">
-                {member.name}
-              </TableCell>
-              <TableCell style={{ width: '24%' }} align="left">
-                {member.email}
-              </TableCell>
-            </TableRow>
+          ).map(({ username, password, name, email }) => (
+            // <Link to={`/member-detail/${ username }`} onClick={() => handleClick(JSON.stringify({ username, password, name, email }) )}>
+              <TableRow component={Link} to={`/member-detail/${username}`} onClick={() => handleClick(JSON.stringify({ username, password, name, email }))} key={username}>
+                  <TableCell component="th" scope="row">
+                    {username}
+                  </TableCell>
+                  <TableCell style={{ width: '24%' }} align="left">
+                    {password}
+                  </TableCell>
+                  <TableCell style={{ width: '24%' }} align="left">
+                    {name}
+                  </TableCell>
+                  <TableCell style={{ width: '24%' }} align="left">
+                    {email}
+                  </TableCell>
+              </TableRow>
+            // </Link>
           ))}
 
           {emptyRows > 0 && (
             <TableRow style={{ height: 53 * emptyRows }}>
-              <TableCell colSpan={6} />
+              <TableCell colSpan={4} />
             </TableRow>
           )}
         </TableBody>
@@ -204,4 +211,4 @@ const MemberList2 = () => {
   );
 }
 
-export default MemberList2;
+export default MemberListComponent2;

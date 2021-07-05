@@ -21,13 +21,17 @@ class MemberVOSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         return member.objects.create(**validated_data)  # ** -> dictionary
 
+    # def update(self, instance, validated_data):
+    #     instance.username = validated_data.get('username', instance.username)
+    #     instance.password = validated_data.get('password', instance.password)
+    #     instance.name = validated_data.get('name', instance.name)
+    #     instance.email = validated_data.get('email', instance.email)
+    #     instance.save()
+    #     return instance
+
     def update(self, instance, validated_data):
-        instance.username = validated_data.get('username', instance.username)
-        instance.password = validated_data.get('password', instance.password)
-        instance.name = validated_data.get('name', instance.name)
-        instance.email = validated_data.get('email', instance.email)
-        instance.save()
-        return instance
+        member.objects.filter(pk=instance.username).update(**validated_data)
+        return member
 
 
 class UserSerializer(serializers.ModelSerializer):

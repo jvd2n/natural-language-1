@@ -5,8 +5,9 @@ import { Button } from '@material-ui/core';
 // import { InputSharp, SettingsInputSvideo } from '@material-ui/icons';
 import { memberLogin } from 'api/index';
 import { useHistory } from 'react-router'
+// import { Redirect, Route } from 'react-router-dom'
 
-const MemberLogin = () => {
+const MemberLoginForm = () => {
   const history = useHistory()
 
   const [loginInfo, setLoginInfo] = useState({
@@ -32,10 +33,26 @@ const MemberLogin = () => {
     memberLogin({...loginInfo})
     .then((res) => {
       console.log(res)
-      alert(`${res.data.username}님, 로그인 되었습니다.`)
+      if (res.data.result !== 'FAIL') {
+        console.log(JSON.stringify(res.data))
+        alert(`${res.data.username}님, 로그인 되었습니다.`)
+        // localStorage.setItem("loginedMember", res.data.username)
+        localStorage.setItem("loginedMember", JSON.stringify(res.data))
+        alert(`${localStorage.getItem("loginedMember")}`)
+        history.push('/home');
+      } else {
+        alert(`${res.data.message}`)
+        setLoginInfo({
+          username: '',
+          password: ''
+        })
+        document.getElementById('username').focus();
+        // document.getElementById("username").value = ''
+        // document.getElementById("password").value = ''
+      }
     })
-    .catch(err => {
-      alert(`로그인 실패 : ${err}`)
+    .catch((err) => {
+      alert(`로그인 실패 : ${err}`);
     })
   }
 
@@ -50,7 +67,7 @@ const MemberLogin = () => {
 
         <div className="container">
           <label laberFor="username"><b>Username</b></label>
-          <input type="text" placeholder="Enter Username" name="username" value={username} onChange={handleChange}/>
+          <input type="text" placeholder="Enter Username" name="username" id="username" value={username} onChange={handleChange}/>
 
           <label laberFor="password"><b>Password</b></label>
           <input type="password" placeholder="Enter Password" name="password" value={password} onChange={handleChange}/>
@@ -70,4 +87,4 @@ const MemberLogin = () => {
   </>)
 }
 
-export default MemberLogin;
+export default MemberLoginForm;

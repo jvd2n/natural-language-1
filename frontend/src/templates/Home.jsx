@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 // import { useEffect } from 'react';
 import axios from 'axios';
 import { Button } from '@material-ui/core';
+import { MemberMenu as Menu } from '../common'
+import { Nav } from 'common'
 // import './Home.css'
 
 const Home = ({children}) => {
@@ -26,16 +28,36 @@ const Home = ({children}) => {
       // alert(res.data.connection)
       // localStorage.setItem('connection', res.data.connection)
       setConnection(res.data.connection === 'SUCCESS')
+      console.log(localStorage.getItem("loginedMember"))
     });
   }
 
+  const loginName = localStorage.getItem("loginedMember");
+
   return (<>
+  <Nav/>
     <table className="tab_lay">
       <tr><td><h1>Home</h1></td></tr>
-      <tr><td><Button variant="outlined" color="primary" onClick={handleClick}>Server Connection TEST</Button></td></tr>
-      <tr><td>{ connection ?
-      'Connected':'Not Connected'
-      }</td></tr>
+      <tr><td>
+        { localStorage.getItem("loginedMember") === "" ?
+        ''
+        :
+        `로그인 아이디 : ${loginName["username"]}`
+        }
+      </td></tr>
+      <tr>
+        <td><Menu/></td>
+      </tr>
+      <tr>
+        <td><Button variant="outlined" color="primary" onClick={handleClick}>Server Connection TEST</Button></td>
+      </tr>
+      <tr>
+        <td>{ connection ?
+        'Connected'
+        :
+        'Not Connected'
+        }</td>
+      </tr>
     </table>
     {children}
 </>)}
