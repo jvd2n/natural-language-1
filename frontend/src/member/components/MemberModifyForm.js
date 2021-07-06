@@ -1,20 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import 'member/styles/MemberDetail.css'
 import { memberModify } from 'api'
+import { useHistory } from 'react-router'
+
 const MemberModifyForm = () => {
+  const history = useHistory()
+
   const [changedPassword, setChangedPassword] = useState('')
 
   const handleSubmit = e => {
     e.preventDefault()
-    console.log(changedPassword)
+    // console.log(changedPassword)
     const member = JSON.parse(localStorage.getItem("loginedMember"))
-    alert(changedPassword)
+    // alert(changedPassword)
     member.password = changedPassword
-    alert(JSON.stringify(member))
+    // alert(JSON.stringify(member))
     memberModify({member})
     .then(res => {
       alert(`비밀번호 수정 완료 : ${res.data.result} `)
-      // history.push('login')
+      history.push('/home')
     })
     .catch(err => {
       alert(`비밀번호 수정 실패 : ${err} `)

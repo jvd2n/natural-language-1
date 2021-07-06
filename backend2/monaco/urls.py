@@ -27,7 +27,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^api/post/', include('board.urls')),
     url(r'^api/member/', include('member.urls')),
-    url('^adm/member/', include('member.urls')),
+    url(r'^adm/member/', include('member.urls')),
     # url(r'^member', Connection.as_view())
     # url(r'^member', Auth.as_view()),
     # url(r'^member', include('member.urls')),

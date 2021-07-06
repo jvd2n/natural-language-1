@@ -86,6 +86,11 @@ const MemberNav = () => {
               <Link to='/board'>Board</Link>&nbsp;&nbsp;
               <Link to='/stock'>Stock</Link>&nbsp;&nbsp;
             </Typography>
+            { localStorage.getItem("loginedMember") === "" ?
+            ''
+            :
+            `${JSON.parse(localStorage.getItem("loginedMember")).username} 님, 환영합니다.`
+            }
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />

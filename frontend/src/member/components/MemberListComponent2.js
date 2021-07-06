@@ -118,6 +118,7 @@ const useStyles2 = makeStyles({
 
 const MemberListComponent2 = () => {
   const [members, setMembers] = useState([]);
+
   useEffect(() => {
     memberList2()
     .then(res => {

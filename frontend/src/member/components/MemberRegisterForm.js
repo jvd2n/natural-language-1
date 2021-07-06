@@ -36,9 +36,9 @@ const MemberRegisterForm = () => {
     // userSignup(signupRequest)
     memberRegister({...userInfo})
     .then((res) => {
-      console.log(res.data.username)
-      alert(`${res.data.username}님, 환영합니다.`)
-      // history.push('login')
+      console.log(res)
+      alert(`${res.data.result}님, 환영합니다.`)
+      history.push('/member-login')
     })
     .catch(err => {
       alert(`회원가입 실패 : ${err}`)

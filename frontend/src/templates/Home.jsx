@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Button } from '@material-ui/core';
 import { MemberMenu as Menu } from '../common'
 import { Nav } from 'common'
+import { useEffect } from 'react';
 // import './Home.css'
 
 const Home = ({children}) => {
@@ -28,23 +29,14 @@ const Home = ({children}) => {
       // alert(res.data.connection)
       // localStorage.setItem('connection', res.data.connection)
       setConnection(res.data.connection === 'SUCCESS')
-      console.log(localStorage.getItem("loginedMember"))
+      // console.log(localStorage.getItem("loginedMember"))
     });
   }
-
-  const loginName = localStorage.getItem("loginedMember");
 
   return (<>
   <Nav/>
     <table className="tab_lay">
       <tr><td><h1>Home</h1></td></tr>
-      <tr><td>
-        { localStorage.getItem("loginedMember") === "" ?
-        ''
-        :
-        `로그인 아이디 : ${loginName["username"]}`
-        }
-      </td></tr>
       <tr>
         <td><Menu/></td>
       </tr>
